@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Burger & Co. | Plantilla Comida Rápida</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="static/styles.css">
     <!-- Iconos opcionales (FontAwesome o Boxicons) pueden ir aquí -->
 </head>
 <body>
@@ -13,19 +13,19 @@
         <div class="logo">COMIDA<span>RAPIDA</span></div>
         
         <nav class="nav-links" id="nav">
-            <a href="{{ url_for('home') }}" class="active">Inicio</a>
-            <a href="{{ url_for('menu') }}">Menú</a>
-            <a href="{{ url_for('nosotros') }}">Nosotros</a>
-            <a href="{{ url_for('contacto') }}">Contacto</a>
+            <a href="templates/home" class="active">Inicio</a>
+            <a href="templates/menu">Menú</a>
+            <a href="templates/nosotros">Nosotros</a>
+            <a href="templates/contacto">Contacto</a>
         </nav>
         <a href="{{ url_for('menu') }}" class="btn-primary nav-btn">Ordenar Ahora</a>
     </header>
     
     <nav class="nav-mobile">
-        <a href="{{ url_for('home') }}"class="active">🏠<span>Inicio</span></a>
-        <a href="{{ url_for('menu') }}">🍔 <span>Menú</span>  </a>
-        <a href="{{ url_for('nosotros') }}">👥 <span>Nosotros</span></a>
-        <a href="{{ url_for('contacto') }}">📞 <span>Contacto</span></a>
+        <a href=" templates/home" class="active">🏠<span>Inicio</span></a>
+        <a href="templates/menu">🍔 <span>Menú</span>  </a>
+        <a href="templates/nosotros">👥 <span>Nosotros</span></a>
+        <a href="templates/contacto">📞 <span>Contacto</span></a>
         
     </nav>
 
