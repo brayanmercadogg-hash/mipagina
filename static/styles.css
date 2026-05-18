@@ -1,0 +1,688 @@
+/* ==========================================================
+   RESET & VARIABLES
+   ========================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif, system-ui;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-main: #121212;       /* Fondo oscuro principal */
+    --bg-card: #1e1e1e;       /* Fondo de tarjetas */
+    --primary: #ff4a11;       /* Naranja eléctrico */
+    --primary-hover: #e03e0b;
+    --text-main: #ffffff;     /* Texto blanco */
+    --text-muted: #a0a0a0;    /* Texto secundario */
+    --accent: #ffb703;        /* Amarillo detalles */
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    overflow-x: hidden; /* Evita desbordamientos laterales */
+}
+
+/* ==========================================================
+   NAVBAR & LINKS
+   ========================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background-color: rgba(18, 18, 18, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary);
+}
+
+/* Botón del Carrito en la Navbar */
+.cart-btn-nav {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    padding: 5px;
+    margin-left: 15px;
+    transition: color 0.2s;
+}
+.cart-btn-nav:hover { color: var(--primary); }
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--primary);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--primary);
+}
+
+/* MENÚ HAMBURGUESA ICONO */
+.nav-toggle { 
+    display: none; 
+    flex-direction: column; 
+    gap: 5px; 
+    background: transparent; 
+    border: none; 
+    cursor: pointer; 
+    z-index: 100000; /* Asegura que el botón quede encima al abrir */
+}
+.nav-toggle span { width: 25px; height: 3px; background-color: white; border-radius: 2px; transition: 0.3s; }
+
+/* BOTONES GLOBALES */
+.btn-primary {
+    background-color: var(--primary);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, background 0.3s;
+    border: none;
+    cursor: pointer;
+}
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-main);
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid #333;
+    transition: all 0.3s;
+}
+.btn-secondary:hover {
+    border-color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================
+   HERO SECTIONS
+   ========================================================== */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: 120px 8% 60px 8%;
+    gap: 40px;
+}
+.hero-content { flex: 1; }
+.badge {
+    background-color: rgba(255, 74, 17, 0.15);
+    color: var(--primary);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.hero-content h1 { font-size: 52px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+.hero-content p { color: var(--text-muted); font-size: 18px; margin-bottom: 30px; line-height: 1.6; }
+.hero-buttons { display: flex; gap: 15px; }
+.hero-image { flex: 1; display: flex; justify-content: center; }
+.hero-image img {
+    max-width: 100%; height: auto; border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5); transform: rotate(2deg); transition: transform 0.3s;
+}
+.hero-image img:hover { transform: rotate(0deg) scale(1.02); }
+
+.menu-hero {
+    padding: 140px 8% 40px 8%;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(255,74,17,0.05) 0%, rgba(18,18,18,1) 100%);
+}
+.hero-content-mini h1 { font-size: 42px; font-weight: 800; margin-bottom: 10px; }
+.hero-content-mini h1 span { color: var(--primary); }
+.hero-content-mini p { color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+/* ==========================================================
+   MENU GRID & VISTA DINÁMICA
+   ========================================================== */
+.menu-section, .menu-section-page { padding: 80px 8%; background-color: #161616; }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-size: 36px; font-weight: 700; }
+.section-title h2 span { color: var(--accent); }
+.section-title p { color: var(--text-muted); margin-top: 10px; }
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+.menu-card {
+    background-color: var(--bg-card); border-radius: 20px; overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s; border: 1px solid #252525;
+}
+.menu-card:hover {
+    transform: translateY(-10px); box-shadow: 0 15px 30px rgba(255, 74, 17, 0.1); border-color: rgba(255, 74, 17, 0.3);
+}
+.card-img img { width: 100%; height: 220px; object-fit: cover; }
+.card-info { padding: 25px; }
+.card-info h3 { font-size: 22px; margin-bottom: 10px; }
+.card-info p { color: var(--text-muted); font-size: 14px; line-height: 1.5; height: 65px; overflow: hidden; }
+.card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
+.price { font-size: 20px; font-weight: 700; color: var(--accent); }
+
+.btn-add {
+    background-color: var(--primary); color: white; border: none; width: 40px; height: 40px;
+    border-radius: 50%; font-size: 20px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.1s;
+}
+.btn-add:hover { background-color: var(--primary-hover); transform: scale(1.1); }
+
+/* FILTROS */
+.filters-container { padding: 20px 8%; display: flex; justify-content: center; }
+.filters-wrapper { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+.filter-btn {
+    background-color: var(--bg-card); color: var(--text-main); border: 1px solid #333;
+    padding: 10px 22px; border-radius: 25px; cursor: pointer; font-weight: 500; transition: all 0.3s ease;
+}
+.filter-btn:hover, .filter-btn.active { background-color: var(--primary); border-color: var(--primary); transform: translateY(-2px); }
+
+/* ==========================================================
+   INTERFAZ DEL CARRITO LATERAL (SIDEBAR PREMIUM)
+   ========================================================== */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%; 
+    max-width: 440px; /* Un poco más ancho en PC para que respire el contenido */
+    height: 100vh;
+    background-color: #141414; /* Un gris casi negro más profundo */
+    z-index: 2000;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Animación de entrada ultrapastosa y suave */
+    border-left: 1px solid #222222;
+}
+.cart-sidebar.open { 
+    right: 0; 
+}
+
+/* Encabezado del carrito */
+.cart-header { 
+    padding: 30px 25px 20px 25px; 
+    border-bottom: 1px solid #222222; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+.cart-header h3 { 
+    font-size: 22px; 
+    font-weight: 700;
+    color: var(--text-main); 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+}
+.close-cart-btn { 
+    background: #1e1e1e; 
+    border: 1px solid #333333; 
+    color: var(--text-muted); 
+    font-size: 24px; 
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+    transition: all 0.2s ease;
+}
+.close-cart-btn:hover { 
+    color: #fff; 
+    background-color: #252525;
+    transform: rotate(90deg); /* Efecto de giro sutil al cerrarlo */
+}
+
+/* Cuerpo donde van los productos agregados */
+.cart-body { 
+    padding: 25px 25px; 
+    flex: 1; 
+    overflow-y: auto; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 18px; 
+}
+
+/* Estilo personalizado para la barra de scroll dentro del carrito */
+.cart-body::-webkit-scrollbar {
+    width: 6px;
+}
+.cart-body::-webkit-scrollbar-thumb {
+    background-color: #252525;
+    border-radius: 10px;
+}
+
+.cart-empty { 
+    text-align: center; 
+    color: var(--text-muted); 
+    margin-top: 60px; 
+    font-size: 16px; 
+    font-weight: 500;
+}
+
+/* Tarjetas de productos individuales dentro del carrito */
+.cart-item { 
+    background-color: var(--bg-card); 
+    padding: 16px; 
+    border-radius: 16px; /* Esquinas más redondeadas */
+    border: 1px solid #252525; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    transition: border-color 0.2s;
+}
+.cart-item:hover {
+    border-color: #333333;
+}
+
+.item-info h4 { 
+    font-size: 16px; 
+    font-weight: 600;
+    margin-bottom: 6px; 
+}
+.item-info p { 
+    color: var(--accent); 
+    font-weight: 700; 
+    font-size: 15px; 
+}
+
+/* Controles de cantidad (+ / -) */
+.item-actions { 
+    display: flex; 
+    align-items: center; 
+    gap: 14px; 
+    background-color: #141414; 
+    padding: 8px 16px; 
+    border-radius: 30px; 
+    border: 1px solid #282828; 
+}
+.item-actions button { 
+    background: transparent; 
+    border: none; 
+    color: var(--text-main); 
+    font-size: 16px; 
+    font-weight: bold;
+    cursor: pointer; 
+    transition: color 0.2s, transform 0.1s;
+}
+.item-actions button:hover { 
+    color: var(--primary); 
+}
+.item-actions button:active {
+    transform: scale(0.85);
+}
+.item-actions span { 
+    font-size: 15px; 
+    font-weight: 700; 
+}
+
+/* Pie del panel de control de pagos */
+.cart-footer-panel { 
+    padding: 25px; 
+    border-top: 1px solid #222222; 
+    background-color: #0f0f0f; /* Un tono sutilmente más oscuro para contrastar con el cuerpo */
+}
+
+.total-box { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    font-size: 19px; 
+    font-weight: 700; 
+    margin-bottom: 25px; 
+    border-bottom: 1px dashed #252525;
+    padding-bottom: 16px;
+}
+.total-box span:first-child {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+.total-box span:last-child {
+    color: var(--primary);
+    font-size: 22px;
+    text-shadow: 0 0 15px rgba(255, 74, 17, 0.25);
+}
+
+/* Botón de Checkout (WhatsApp) */
+.checkout-btn { 
+    width: 100%; 
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: #ffffff;
+    border: none;
+    padding: 16px; 
+    border-radius: 30px; 
+    font-size: 15px; 
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgba(255, 74, 17, 0.35);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-bottom: 14px;
+}
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 74, 17, 0.55);
+}
+.checkout-btn:active {
+    transform: translateY(1px);
+}
+
+/* Botón de Vaciar Carrito */
+.clear-cart-btn { 
+    background: transparent; 
+    border: 2px solid #222222; 
+    color: #777777; 
+    width: 100%; 
+    padding: 12px;
+    border-radius: 30px;
+    cursor: pointer; 
+    font-size: 14px; 
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+.clear-cart-btn:hover { 
+    color: #ff4444; 
+    border-color: rgba(255, 68, 68, 0.3);
+    background-color: rgba(255, 68, 68, 0.04);
+}
+
+/* Fondo oscuro / Blur traslúcido para toda la pantalla */
+.cart-overlay { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(5px); /* Hace un efecto borroso genial detrás del menú */
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1999; 
+    display: none; 
+}
+.cart-overlay.open { 
+    display: block; 
+}
+
+/* ==========================================================
+   REVIEWS & FOOTER
+   ========================================================== */
+.reviews-section { padding: 60px 8%; background-color: #161616; text-align: center; }
+.reviews-slider { max-width: 700px; margin: 0 auto; position: relative; min-height: 120px; }
+.review { position: absolute; width: 100%; opacity: 0; transform: scale(0.95); transition: all 0.6s ease-in-out; pointer-events: none; }
+.review.active { position: relative; opacity: 1; transform: scale(1); pointer-events: auto; }
+.review p { font-style: italic; color: var(--text-muted); font-size: 18px; margin-bottom: 15px; }
+.review h4 { color: var(--accent); }
+
+footer { background-color: var(--bg-main); padding: 60px 8% 20px 8%; border-top: 1px solid #2a2a2a; }
+.footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 40px; }
+.footer-info p { color: var(--text-muted); margin-top: 15px; max-width: 300px; }
+.footer-hours h4 { margin-bottom: 15px; color: var(--accent); }
+.footer-hours p { color: var(--text-muted); font-size: 14px; margin-bottom: 5px; }
+.footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #222; color: #555; font-size: 14px; }
+.footer-form { margin-top: 20px; }
+.footer-form h4 { font-size: 16px; margin-bottom: 10px; }
+.form-group { display: flex; max-width: 300px; border-radius: 30px; overflow: hidden; border: 1px solid #333; }
+.form-group input { background: #1e1e1e; border: none; padding: 12px 15px; color: white; width: 100%; outline: none; }
+.btn-send { background: var(--primary); border: none; padding: 0 15px; cursor: pointer; font-size: 16px; }
+
+/* ==========================================================
+   PÁGINAS ADICIONALES (NOSOTROS & CONTACTO)
+   ========================================================== */
+.about-container { padding: 140px 8% 60px 8%; max-width: 1200px; margin: 0 auto; }
+.about-hero { text-align: center; margin-bottom: 60px; }
+.about-hero h1 { font-size: 46px; font-weight: 800; }
+.about-hero h1 span { color: var(--primary); }
+.about-hero p { color: var(--text-muted); max-width: 700px; margin: 20px auto 0; line-height: 1.6; }
+.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 40px; margin-bottom: 60px; }
+.about-card { background-color: var(--bg-card); border-radius: 20px; padding: 40px; border: 1px solid #252525; display: flex; flex-direction: column; justify-content: space-between; }
+.about-card h3 { font-size: 24px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.about-card h3 i { color: var(--primary); }
+.schedule-list p { font-size: 16px; margin-bottom: 15px; color: var(--text-muted); }
+.schedule-list p span { color: var(--text-main); font-weight: 600; display: block; margin-bottom: 20px; }
+
+.status-badge { display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 16px; margin-top: 20px; text-transform: uppercase; width: fit-content; }
+.status-badge .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.status-badge.checking { background-color: #333; color: #aaa; }
+.status-badge.checking .dot { background-color: #aaa; }
+.status-badge.open { background-color: rgba(46, 204, 113, 0.15); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.3); }
+.status-badge.open .dot { background-color: #2ecc71; box-shadow: 0 0 10px #2ecc71; animation: pulse 1.5s infinite; }
+.status-badge.closed { background-color: rgba(231, 76, 60, 0.15); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.3); }
+.status-badge.closed .dot { background-color: #e74c3c; }
+
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+.address-text { color: var(--text-muted); font-size: 18px; margin-bottom: 30px; }
+.social-links { display: flex; flex-direction: column; gap: 12px; }
+.social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border-radius: 10px; text-decoration: none; color: #fff; font-weight: 600; transition: transform 0.2s; }
+.social-btn:hover { transform: translateX(5px); }
+.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.facebook { background-color: #1877f2; }
+.tiktok { background-color: #000000; border: 1px solid #252525; }
+
+.map-section { margin-top: 40px; }
+.map-section h3 { font-size: 24px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.map-wrapper { border-radius: 20px; overflow: hidden; border: 1px solid #252525; filter: invert(90%) hue-rotate(180deg); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+.contact-page-container { padding: 140px 8% 60px 8%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: start; }
+.contact-channels h2 { font-size: 42px; font-weight: 800; }
+.contact-channels h2 span { color: var(--primary); }
+.channels-subtitle { color: var(--text-muted); margin: 15px 0 30px; line-height: 1.6; }
+
+.channel-card { background-color: var(--bg-card); border-radius: 20px; padding: 30px; border: 1px solid #252525; display: flex; gap: 20px; align-items: center; text-decoration: none; color: inherit; margin-bottom: 25px; transition: transform 0.3s, border-color 0.3s; }
+.whatsapp-card:hover { transform: translateY(-5px); border-color: #25d366; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.1); }
+.channel-icon { font-size: 35px; width: 60px; height: 60px; background-color: rgba(37, 211, 102, 0.1); color: #25d366; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.channel-info h3 { font-size: 20px; margin-bottom: 4px; }
+.channel-info p { color: var(--text-muted); font-size: 14px; }
+.action-link { color: #25d366; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
+
+.contact-form-container { background-color: var(--bg-card); border-radius: 20px; padding: 40px; border: 1px solid #252525; }
+.contact-form-container h3 { font-size: 24px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
+.contact-form-container p { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; }
+.main-contact-form { display: flex; flex-direction: column; gap: 20px; }
+.input-box { display: flex; flex-direction: column; gap: 8px; }
+.input-box label { font-size: 14px; font-weight: 500; color: #ddd; }
+.input-box input, .input-box textarea { background-color: #161616; border: 1px solid #333; padding: 14px; border-radius: 10px; color: #fff; font-size: 15px; outline: none; transition: border-color 0.2s; }
+.input-box input:focus, .input-box textarea:focus { border-color: var(--primary); }
+.form-submit-btn { width: 100%; padding: 15px; border-radius: 10px; font-size: 16px; margin-top: 10px; }
+
+/* ==========================================================
+   MEDIA QUERIES UNIFICADAS & ELEMENTOS FLOTANTES
+   ========================================================== */
+
+/* 🟢 ESTILOS BASE PARA EL BOTÓN FLOTANTE (PC y Celular) */
+.cart-floating-btn {
+    display: flex !important; /* Ahora se muestra SIEMPRE, también en PC */
+    position: fixed;
+    bottom: 30px; /* En PC se ve genial a esta altura */
+    right: 30px;
+    background-color: var(--primary); /* Usa tu naranja eléctrico */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(255, 74, 17, 0.4);
+    z-index: 99999; 
+    transition: transform 0.2s ease, background-color 0.2s;
+}
+
+.cart-floating-btn:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.08);
+}
+
+.cart-floating-btn .cart-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: var(--text-main);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 7px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Por defecto (Pantallas grandes): Ocultamos solo la barra inferior */
+.nav-mobile {
+    display: none;
+}
+.nav-desktop {
+    display: flex;
+    gap: 20px;
+}
+
+
+/* 📱 AJUSTES EXCLUSIVOS PARA MÓVILES Y TABLETS (Menores a 968px) */
+@media (max-width: 968px) {
+    
+    /* Ajustes de secciones generales */
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 140px;
+    }
+    .hero-buttons { 
+        justify-content: center; 
+    }
+    .menu-section, .menu-section-page { 
+        padding: 60px 4%; 
+    }
+    .about-grid { 
+        grid-template-columns: 1fr; 
+        gap: 20px; 
+    }
+    .contact-page-container { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+        padding-top: 130px; 
+    }
+
+    /* Limpieza de Navbar Superior */
+    .nav-desktop, 
+    .nav-btn, 
+    .nav-toggle, 
+    .nav-links { 
+        display: none !important; 
+    }
+    
+    .navbar {
+        justify-content: center;
+        padding: 15px;
+    }
+
+    /* Activamos la barra inferior estilo App Móvil */
+    .nav-mobile {
+        display: flex !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #111111;
+        border-top: 2px solid #222222;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        z-index: 999998; 
+    }
+
+    .nav-mobile a {
+        color: #aaaaaa;
+        text-decoration: none;
+        font-size: 11px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        transition: color 0.2s;
+    }
+
+    .nav-mobile a span {
+        font-size: 10px;
+    }
+
+    .nav-mobile a.active, 
+    .nav-mobile a:hover {
+        color: var(--primary);
+    }
+
+    /* 🔄 RE-POSICIONAMOS EL BOTÓN EN MÓVIL (Para que no tape la barra inferior) */
+    .cart-floating-btn {
+        bottom: 85px; 
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+
+    body {
+        padding-bottom: 70px; 
+    }
+}

@@ -1,0 +1,10 @@
+# Ignorar el entorno virtual de Python
+venv/
+.venv/
+env/
+
+# Archivos ocultos del sistema o editores
+.DS_Store
+.vscode/
+__pycache__/
+*.pyc

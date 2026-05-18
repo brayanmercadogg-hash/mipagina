@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Completo | Burger & Co.</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">COMIDA<span>RAPIDA</span></div>
+        
+        <nav class="nav-links" id="nav">
+            <a href="{{ url_for('home') }}" >Inicio</a>
+            <a href="{{ url_for('menu') }}"class="active">Menú</a>
+            <a href="{{ url_for('nosotros') }}">Nosotros</a>
+            <a href="{{ url_for('contacto') }}">Contacto</a>
+        </nav>
+        <a href="{{ url_for('menu') }}" class="btn-primary nav-btn">Ordenar Ahora</a>
+    </header>
+
+    <nav class="nav-mobile">
+        <a href="{{ url_for('home') }}">🏠 <span>Inicio</span></a>
+        <a href="{{ url_for('menu') }}" class="active">🍔 <span>Menú</span></a>
+        <a href="{{ url_for('nosotros') }}">👥 <span>Nosotros</span></a>
+        <a href="{{ url_for('contacto') }}">📞 <span>Contacto</span></a>
+    </nav>
+
+    <section class="menu-hero">
+        <div class="hero-content-mini">
+            <h1>Satisface Tus <span>Antojos</span></h1>
+            <p>Explora nuestra selección premium, desde hamburguesas artesanales hasta los acompañamientos más crujientes.</p>
+        </div>
+    </section>
+
+    <section class="filters-container">
+        <div class="filters-wrapper">
+            <button class="filter-btn active" data-category="todos">🍔 Todo</button>
+            <button class="filter-btn" data-category="hamburguesas">Hamburguesas</button>
+            <button class="filter-btn" data-category="entradas">Entradas/Papas</button>
+            <button class="filter-btn" data-category="bebidas">Bebidas</button>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section-page">
+        <div class="menu-grid" id="menuGrid"></div>
+    </section>
+
+    <section class="reviews-section">
+        <div class="section-title">
+            <h2>Lo Que Dicen Nuestros <span>Clientes</span></h2>
+        </div>
+        <div class="reviews-slider">
+            <div class="review active">
+                <p>"La Monster Cheese es de otro planeta. La carne súper jugosa y el envío llegó calientito."</p>
+                <h4>- Carlos R.</h4>
+            </div>
+            <div class="review">
+                <p>"Las mejores papas rústicas con queso que he probado en la ciudad. 100% recomendados."</p>
+                <h4>- Andrea M.</h4>
+            </div>
+            <div class="review">
+                <p>"Excelente atención y el sistema para ver el menú es súper rápido."</p>
+                <h4>- Juan P.</h4>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>BURGER<span>&CO</span></h3>
+                <p>Comida rápida de verdad para gente con hambre de verdad.</p>
+            </div>
+            
+            <div class="footer-hours">
+                <h4>Horarios de Atención</h4>
+                <p>Lunes a Viernes: 4:00 PM - 11:00 PM</p>
+                <p>Sábados y Domingos: 12:00 PM - 1:00 AM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Burger & Co. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Tu Pedido 🍔</h3>
+            <button id="cart-close" class="close-cart-btn">&times;</button>
+        </div>
+
+        <div class="cart-body" id="carrito-items">
+            <p class="cart-empty">Tu carrito está vacío 🌟</p>
+        </div>
+
+        <div class="cart-footer-panel">
+            <div class="total-box">
+                <span>Total:</span>
+                <span id="carrito-total">$0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="window.enviarPedidoWhatsApp()">
+                Pedir por WhatsApp 🔥
+            </button>
+            <button class="clear-cart-btn" onclick="window.vaciarCarrito()">
+                Vaciar Carrito 🗑️
+            </button>
+            <a> &nbsp; &nbsp; &nbsp; &nbsp;</a>
+            <a> &nbsp; &nbsp; &nbsp; &nbsp;</a>
+            <a> &nbsp; &nbsp; &nbsp; &nbsp;</a>
+        </div>
+    </div>
+
+    <a href="#" id="cart-toggle" class="cart-floating-btn">
+        🛒
+        <span id="cart-count" class="cart-badge" style="display: none;">0</span>
+    </a>
+
+    <script src="../static/script.js" defer></script>
+</body>
+</html>

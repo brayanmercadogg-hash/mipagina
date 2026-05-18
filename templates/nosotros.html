@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros | Burger & Co.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">COMIDA<span>RAPIDA</span></div>
+        
+        <nav class="nav-links" id="nav">
+            <a href="{{ url_for('home') }}">Inicio</a>
+            <a href="{{ url_for('menu') }}">Menú</a>
+            <a href="{{ url_for('nosotros') }}">Nosotros</a>
+            <a href="{{ url_for('contacto') }}" class="active">Contacto</a>
+        </nav>
+        <a href="{{ url_for('menu') }}" class="btn-primary nav-btn">Ordenar Ahora</a>
+    </header>
+    
+    <nav class="nav-mobile">
+        <a href="{{ url_for('home') }}">🏠 <span>Inicio</span></a>
+        <a href="{{ url_for('menu') }}">🍔 <span>Menú</span>  </a>
+        <a href="{{ url_for('nosotros') }}"class="active">👥 <span>Nosotros</span></a>
+        <a href="{{ url_for('contacto') }}">📞 <span>Contacto</span></a>
+        
+    </nav>
+
+    <section class="about-container">
+        <div class="about-hero">
+            <h1>Nuestra <span>Historia</span></h1>
+            <p>Desde 2026, cocinando carne real a la parrilla para gente con hambre de verdad. Sin secretos, solo pasión, fuego y el mejor queso derretido de la ciudad.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card status-card">
+                <h3><i class="fa-solid fa-clock"></i> Horarios de Atención</h3>
+                <div class="schedule-list">
+                    <p><span>Lunes a Viernes:</span> 4:00 PM - 11:00 PM</p>
+                    <p><span>Sábados y Domingos:</span> 12:00 PM - 1:00 AM</p>
+                </div>
+                
+                <div id="statusIndicator" class="status-badge checking">
+                    <span class="dot"></span> <span class="status-text">Verificando estado...</span>
+                </div>
+            </div>
+
+            <div class="about-card info-card">
+                <h3><i class="fa-solid fa-location-dot"></i> Dónde Encontrarnos</h3>
+                <p class="address-text">Av. 20 de Julio #80-148, Centro Histórico</p>
+                
+                <h4>Síguenos en nuestras Redes</h4>
+                <div class="social-links">
+                    <a href="https://instagram.com" target="_blank" class="social-btn instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    <a href="https://facebook.com" target="_blank" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                    <a href="https://tiktok.com" target="_blank" class="social-btn tiktok"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h3><i class="fa-solid fa-map-location-dot"></i> Encuéntranos en el Mapa</h3>
+            <div class="map-wrapper">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4712534571933!2d-74.81956772421315!3d10.997325092025732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42d0638d5fbeb%3A0xbc8ad554e39ad312!2sBurger%20Co!5e0!3m2!1ses!2sco!4v1715700000000!5m2!1ses!2sco" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-bottom">
+            <p>&copy; 2026 Burger & Co. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const indicator = document.getElementById("statusIndicator");
+            const text = indicator.querySelector(".status-text");
+
+            function verificarHorario() {
+                const ahora = new Date();
+                const dia = ahora.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+                const hora = ahora.getHours();
+                let abierto = false;
+
+                // Lunes (1) a Viernes (5): 4:00 PM (16) a 11:00 PM (23)
+                if (dia >= 1 && dia <= 5) {
+                    if (hora >= 16 && hora < 23) {
+                        abierto = true;
+                    }
+                } 
+                // Sábados (6) y Domingos (0): 12:00 PM (12) a 1:00 AM (01 del día siguiente)
+                else {
+                    if (hora >= 12 || hora < 1) {
+                        abierto = true;
+                    }
+                }
+
+                // Actualizar la interfaz gráfica según el estado calculado
+                indicator.className = "status-badge " + (abierto ? "open" : "closed");
+                text.innerText = abierto ? "¡ABIERTO AHORA! 🔥 Ven por tu burger" : "CERRADO 😴 Abrimos pronto";
+            }
+
+            verificarHorario();
+            setInterval(verificarHorario, 60000); // Recalcula cada minuto por si cambia la hora
+        });
+    </script>
+</body>
+</html>
