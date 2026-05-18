@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger & Co. | Plantilla Comida Rápida</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <!-- Iconos opcionales (FontAwesome o Boxicons) pueden ir aquí -->
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">COMIDA<span>RAPIDA</span></div>
+        
+        <nav class="nav-links" id="nav">
+            <a href="{{ url_for('home') }}" class="active">Inicio</a>
+            <a href="{{ url_for('menu') }}">Menú</a>
+            <a href="{{ url_for('nosotros') }}">Nosotros</a>
+            <a href="{{ url_for('contacto') }}">Contacto</a>
+        </nav>
+        <a href="{{ url_for('menu') }}" class="btn-primary nav-btn">Ordenar Ahora</a>
+    </header>
+    
+    <nav class="nav-mobile">
+        <a href="{{ url_for('home') }}"class="active">🏠<span>Inicio</span></a>
+        <a href="{{ url_for('menu') }}">🍔 <span>Menú</span>  </a>
+        <a href="{{ url_for('nosotros') }}">👥 <span>Nosotros</span></a>
+        <a href="{{ url_for('contacto') }}">📞 <span>Contacto</span></a>
+        
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <span class="badge">¡Las mejores de la ciudad!</span>
+            <h1>Sabor Explosivo <br> en <br>Cada Mordisco</h1>
+            <p>Preparadas con ingredientes frescos, carne 100% premium y nuestra icónica salsa secreta. ¿Te vas a quedar con el antojo?</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn-primary">Menú Popular</a>
+                <a href="nosotros" class="btn-secondary">Ubicación</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- Reemplaza con el enlace de tu imagen real de hamburguesa/comida -->
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000&auto=format&fit=crop" alt="Hamburguesa Especial">
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section id="menu" class="menu-section">
+        <div class="section-title">
+            <h2>Nuestro Menú <span>Popular</span></h2>
+            <p>Dale un vistazo a los favoritos de la casa</p>
+        </div>
+
+        <div class="menu-grid">
+            <!-- Producto 1 -->
+            <div class="menu-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=500&auto=format&fit=crop" alt="Burger">
+                </div>
+                <div class="card-info">
+                    <h3>Monster Cheese</h3>
+                    <p>Doble carne, triple queso cheddar, tocino crujiente y salsa BBQ artesanal.</p>
+                    <div class="card-footer">
+                        <span class="price">$8.99</span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="menu-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=500&auto=format&fit=crop" alt="Papas">
+                </div>
+                <div class="card-info">
+                    <h3>Crispy Fries</h3>
+                    <p>Papas rústicas bañadas en salsa de queso cheddar caliente y trozos de bacon.</p>
+                    <div class="card-footer">
+                        <span class="price">$4.50</span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="menu-card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=500&auto=format&fit=crop" alt="Alitas">
+                </div>
+                <div class="card-info">
+                    <h3>Buffalo Wings</h3>
+                    <p>8 alitas picantes acompañadas de bastones de apio y aderezo ranch.</p>
+                    <div class="card-footer">
+                        <span class="price">$7.25</span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a> &nbsp;</a>
+        <div class="hero-buttons">
+            <a href="menu" class="btn-primary">Ver Menú</a>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACTO -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>BURGER<span>&CO</span></h3>
+                <p>Comida rápida de verdad para gente con hambre de verdad.</p>
+            </div>
+            <div class="footer-hours">
+                <h4>Horarios</h4>
+                <p>Lunes a Viernes: 4:00 PM - 11:00 PM</p>
+                <p>Sábados y Domingos: 12:00 PM - 1:00 AM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Burger & Co. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
