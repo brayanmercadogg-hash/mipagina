@@ -4,7 +4,7 @@
     "nombre": "Monster Cheese",
     "categoria": "hamburguesas",
     "descripcion": "Doble carne premium de res (150g c/u), triple queso cheddar fundido, tocino ahumado crujiente y nuestra icónica salsa BBQ de la casa.",
-    "precio": 12.00,
+    "precio": 32000,
     "imagen": "static/imagenes/Avocado Burger.jfif"
   },
   {
@@ -12,23 +12,23 @@
     "nombre": "Bacon Smokehouse",
     "categoria": "hamburguesas",
     "descripcion": "Carne de res seleccionada, aros de cebolla crujientes empanizados en panko, doble porción de tocino y aderezo ahumado especial.",
-    "precio": 9.50,
-    "imagen": "static/imagenes/Bacon-Smokehouse-hamburguesa.jfif"
+    "precio": 28000,
+    "imagen": "static/imagenes/Bacon Smokehouse hamburguesa.jfif"
   },
   {
     "id": 3,
     "nombre": "Avocado Burger",
     "categoria": "hamburguesas",
     "descripcion": "Una opción fresca: carne a la parrilla, láminas de aguacate maduro, queso suizo derretido, lechuga hidropónica, tomate y mayonesa de ajo.",
-    "precio": 9.25,
-    "imagen": "static/imagenes/Muenster-Cheese-hamburguesa.jpg"
+    "precio": 26500,
+    "imagen": "static/imagenes/Muenster Cheese hamburguesa.jpg"
   },
   {
     "id": 4,
     "nombre": "Spicy Jalapeño",
     "categoria": "hamburguesas",
     "descripcion": "Para los amantes del picante: carne premium, queso pepper jack, jalapeños asados, cebolla caramelizada y salsa brava picante.",
-    "precio": "8.75",
+    "precio": 25000,
     "imagen": "https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?q=80&w=500&auto=format&fit=crop"
   },
   {
@@ -36,7 +36,7 @@
     "nombre": "Crispy Chicken King",
     "categoria": "hamburguesas",
     "descripcion": "Pechuga de pollo súper crujiente marinada en buttermilk, pepinillos dulces, lechuga picada y aderezo de mayonesa premium.",
-    "precio": "7.99",
+    "precio": 24000,
     "imagen": "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=500&auto=format&fit=crop"
   },
   {
@@ -44,7 +44,7 @@
     "nombre": "Crispy Fries",
     "categoria": "entradas",
     "descripcion": "Papas rústicas con corte grueso, sazonadas con sal de mar y paprika, bañadas en salsa de queso cheddar caliente y trozos de bacon.",
-    "precio": "4.50",
+    "precio": 14000,
     "imagen": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=500&auto=format&fit=crop"
   },
   {
@@ -52,7 +52,7 @@
     "nombre": "Buffalo Wings",
     "categoria": "entradas",
     "descripcion": "8 alitas de pollo jugosas bañadas en nuestra salsa buffalo picante artesanal, acompañadas de bastones de apio y aderezo ranch.",
-    "precio": "7.25",
+    "precio": 18000,
     "imagen": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=500&auto=format&fit=crop"
   },
   {
@@ -60,7 +60,7 @@
     "nombre": "Mozzarella Sticks",
     "categoria": "entradas",
     "descripcion": "6 bastones de auténtico queso mozzarella empanizados con finas hierbas, fritos a la perfección y servidos con salsa marinara italiana.",
-    "precio": "5.50",
+    "precio": 15000,
     "imagen": "https://images.unsplash.com/photo-1734774924912-dcbb467f8599?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TW96emFyZWxsYSUyMFN0aWNrc3xlbnwwfHwwfHx8MA%3D%3D"
   },
   {
@@ -68,7 +68,7 @@
     "nombre": "Onion Rings XL",
     "categoria": "entradas",
     "descripcion": "Aros de cebolla gigantes rebozados en panko artesanal, dorados y crujientes. Servidos con un toque de salsa barbacoa dulce.",
-    "precio": "3.99",
+    "precio": 12000,
     "imagen": "https://images.unsplash.com/photo-1652209911920-2700fcbd5011?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXJvcyUyMGRlJTIwY2Vib2xsYXxlbnwwfHwwfHx8MA%3D%3D"
   },
   {
@@ -76,7 +76,7 @@
     "nombre": "Craft Soda Pop",
     "categoria": "bebidas",
     "descripcion": "Refresco artesanal de la casa infundido con extracto natural de frutas cítricas y jengibre. Servido bien frío con rodajas de limón.",
-    "precio": "2.50",
+    "precio": 6000,
     "imagen": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=500&auto=format&fit=crop"
   },
   {
@@ -84,7 +84,7 @@
     "nombre": "Iced Berry Lemonade",
     "categoria": "bebidas",
     "descripcion": "Limonada fresca recién exprimida, combinada con un puré dulce de frutos rojos (fresas, moras y arándanos) y mucho hielo sutilmente granizado.",
-    "precio": "3.25",
+    "precio": 8500,
     "imagen": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=500&auto=format&fit=crop"
   },
   {
@@ -92,7 +92,7 @@
     "nombre": "Premium Milkshake",
     "categoria": "bebidas",
     "descripcion": "Malteada cremosa de helado de vainilla de Madagascar o chocolate belga, decorada con crema batida, jarabe de chocolate y una cereza.",
-    "precio": "4.50",
+    "precio": 11000,
     "imagen": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=500&auto=format&fit=crop"
   }
 ]
