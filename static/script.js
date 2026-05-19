@@ -138,7 +138,7 @@ function enviarPedidoWhatsApp() {
     window.open(`https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
 
-// Exposición global para que no fallen tus botones del carrito
+// Exposición global para los botones dinámicos
 window.cambiarCantidad = cambiarCantidad;
 window.vaciarCarrito = vaciarCarrito;
 window.enviarPedidoWhatsApp = enviarPedidoWhatsApp;
@@ -156,11 +156,18 @@ function showReview() {
 }
 
 // ==========================================
-// ASYNC FETCH JSON (Ruta de Flask garantizada)
+// ASYNC FETCH JSON (Ruta Estática Optimizada)
 // ==========================================
 async function cargarMenu(){
     try {
-        const response = await fetch("/static/menu.json"); 
+        // Solución al 404: Buscamos el JSON de manera relativa sin la barra inicial '/'
+        // Si tus HTML están dentro de una carpeta (ej: templates), usa "../static/menu.json"
+        // Si tu HTML está en la raíz junto a la carpeta static, usa "static/menu.json"
+        const rutaJson = window.location.pathname.includes('/templates/') ? "../static/menu.json" : "static/menu.json";
+        
+        const response = await fetch(rutaJson); 
+        if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
         productos = await response.json();
         renderizarProductos(productos);
     } catch(error) {
@@ -176,10 +183,16 @@ function renderizarProductos(lista){
     menuGrid.innerHTML = "";
 
     lista.forEach(producto => {
+        // Solución para imágenes rotas en rutas estáticas
+        let rutaImagen = producto.imagen;
+        if (window.location.pathname.includes('/templates/') && !rutaImagen.startsWith('..')) {
+            rutaImagen = "../" + rutaImagen;
+        }
+
         menuGrid.innerHTML += `
             <div class="menu-card">
                 <div class="card-img">
-                    <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy">
+                    <img src="${rutaImagen}" alt="${producto.nombre}" loading="lazy">
                 </div>
                 <div class="card-info">
                     <span class="category">${producto.categoria}</span>
@@ -201,29 +214,31 @@ function renderizarProductos(lista){
 }
 
 // ==========================================
-// FILTRAR CATEGORÍAS
-// ==========================
+// FILTRAR CATEGORÍAS (Inmune a Mayúsculas/Minúsculas)
+// ==========================================
 filterButtons.forEach(button => {
     button.addEventListener("click", () => {
         filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
 
-        const categoria = button.dataset.category;
-        if(categoria === "todos"){
+        const categoriaFiltrada = button.dataset.category.toLowerCase();
+        if(categoriaFiltrada === "todos"){
             renderizarProductos(productos);
         } else {
-            const filtrados = productos.filter(producto => producto.categoria === categoria);
+            // Comparamos convirtiendo ambos lados a minúsculas para que no rompa
+            const filtrados = productos.filter(p => p.categoria.toLowerCase() === categoriaFiltrada);
             renderizarProductos(filtrados);
         }
     });
 });
 
-// --- FORM CONTACTO ---
+// --- FORM CONTACTO ESTÁTICO ---
 const form = document.getElementById("form");
 if(form){
     form.addEventListener("submit", e => {
         e.preventDefault();
         alert("Mensaje enviado 🍔🔥");
+        form.reset();
     });
 }
 
@@ -235,7 +250,7 @@ const cartOverlay = document.getElementById('cart-overlay');
 
 if (cartToggle && cartSidebar && cartOverlay) {
     cartToggle.addEventListener('click', (e) => {
-        e.preventDefault(); // Evita saltos extraños en la pantalla al pulsar '#'
+        e.preventDefault(); 
         cartSidebar.classList.add('open');
         cartOverlay.classList.add('open');
     });
@@ -248,15 +263,13 @@ const cerrarCarrito = () => {
 
 if (cartClose) cartClose.addEventListener('click', cerrarCarrito);
 if (cartOverlay) cartOverlay.addEventListener('click', cerrarCarrito);
-// ==========================================
-// DETECTOR DE EMERGENCIA PARA ABRIR EL CARRITO
-// ==========================================
+
+// --- DETECTOR GLOBAL PARA EMERGENCIAS ---
 document.addEventListener("click", (e) => {
-    // Buscamos si el clic se hizo en el botón del carrito (por ID o por clase)
     const esBotonCarrito = e.target.closest('#cart-toggle') || e.target.closest('.cart-nav-link');
     
     if (esBotonCarrito) {
-        e.preventDefault(); // Evitamos que la página salte
+        e.preventDefault(); 
         
         const sidebar = document.getElementById('cart-sidebar');
         const overlay = document.getElementById('cart-overlay');
