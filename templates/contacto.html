@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Contacto | Burger & Co.</title>
+    <title>Contacto | Burger & Co.</title>
     <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -12,26 +13,25 @@
         <div class="logo">COMIDA<span>RAPIDA</span></div>
         
         <nav class="nav-links" id="nav">
-            <a href="https://brayanmercadogg-hash.github.io/mipagina/index.html" class="active">Inicio</a>
-            <a href="menu">Menú</a>
-            <a href="nosotros">Nosotros</a>
-            <a href="contacto">Contacto</a>
+            <a href="../index.html">Inicio</a>
+            <a href="menu.html">Menú</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html" class="active">Contacto</a>
         </nav>
-        <a href="{{ url_for('menu') }}" class="btn-primary nav-btn">Ordenar Ahora</a>
+        <a href="menu.html" class="btn-primary nav-btn">Ordenar Ahora</a>
     </header>
     
     <nav class="nav-mobile">
-        <a href="../home" class="active">🏠<span>Inicio</span></a>
-        <a href="menu">🍔 <span>Menú</span>  </a>
-        <a href="nosotros">👥 <span>Nosotros</span></a>
-        <a href="contacto">📞 <span>Contacto</span></a>
-        
+        <a href="../index.html">🏠 <span>Inicio</span></a>
+        <a href="menu.html">🍔 <span>Menú</span></a>
+        <a href="nosotros.html">👥 <span>Nosotros</span></a>
+        <a href="contacto.html" class="active">📞 <span>Contacto</span></a>
     </nav>
 
     <section class="contact-page-container">
         
         <div class="contact-channels">
-            <h2>Conécta con <span>Nosotros</span></h2>
+            <h2>Conecta con <span>Nosotros</span></h2>
             <p class="channels-subtitle">¿Tienes dudas, un evento social o antojo extremo? Elige tu canal favorito; respondemos en minutos.</p>
 
             <a href="https://wa.me/573000000000?text=¡Hola!%20Me%20gustaría%20hacer%20un%20pedido%20o%20recibir%20información%20de%20Burger%20%26%20Co%20🍔" 
@@ -43,23 +43,13 @@
                     <span class="action-link">Chatear ahora <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
             </a>
-
-            
         </div>
 
         <div class="contact-form-container">
             <h3><i class="fa-solid fa-envelope"></i> Envíanos un Correo</h3>
             <p>Escríbenos directamente a nuestro buzón central.</p>
 
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert-message {{ category }}">{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-
-            <form action="{{ url_for('contacto') }}" method="POST" class="main-contact-form">
+            <form action="#" method="POST" class="main-contact-form">
                 <div class="input-box">
                     <label>Nombre Completo *</label>
                     <input type="text" name="nombre" placeholder="Ej. Juan Pérez" required>
@@ -88,7 +78,7 @@
 
     <footer>
         <div class="footer-bottom">
-            <p>© 2026 Burger & Co. Todos los derechos reservados.</p>
+            <p>&copy; 2026 Burger & Co. Todos los derechos reservados.</p>
         </div>
     </footer>
 
