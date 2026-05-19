@@ -4,24 +4,24 @@
     "nombre": "Monster Cheese",
     "categoria": "hamburguesas",
     "descripcion": "Doble carne premium de res (150g c/u), triple queso cheddar fundido, tocino ahumado crujiente y nuestra icónica salsa BBQ de la casa.",
-    "precio": "12000",
-    "imagen": "imagenes/Avocado Burger.jfif"
+    "precio": 12.00,
+    "imagen": "static/imagenes/Avocado-Burger.jfif"
   },
   {
     "id": 2,
     "nombre": "Bacon Smokehouse",
     "categoria": "hamburguesas",
     "descripcion": "Carne de res seleccionada, aros de cebolla crujientes empanizados en panko, doble porción de tocino y aderezo ahumado especial.",
-    "precio": "9.50",
-    "imagen": "imagenes/Bacon Smokehouse hamburguesa.jfif"
+    "precio": 9.50,
+    "imagen": "static/imagenes/Bacon-Smokehouse-hamburguesa.jfif"
   },
   {
     "id": 3,
     "nombre": "Avocado Burger",
     "categoria": "hamburguesas",
     "descripcion": "Una opción fresca: carne a la parrilla, láminas de aguacate maduro, queso suizo derretido, lechuga hidropónica, tomate y mayonesa de ajo.",
-    "precio": "9.25",
-    "imagen": "imagenes/Muenster Cheese hamburguesa.jpg"
+    "precio": 9.25,
+    "imagen": "static/imagenes/Muenster-Cheese-hamburguesa.jpg"
   },
   {
     "id": 4,
