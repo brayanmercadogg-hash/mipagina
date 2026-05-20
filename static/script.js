@@ -7,6 +7,9 @@ let productos = [];
 const menuGrid = document.getElementById("menuGrid");
 const filterButtons = document.querySelectorAll(".filter-btn");
 
+// ==========================================
+// INICIALIZACIÓN GLOBAL (DOM Ready)
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     if (menuGrid) {
         menuGrid.addEventListener('click', (e) => {
@@ -28,6 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// ==========================================
+// LÓGICA DEL CARRITO DE COMPRAS
+// ==========================================
 function agregarAlCarrito(id, nombre, precio) {
     const productoExistente = carrito.find(item => item.id === id);
     if (productoExistente) {
@@ -107,23 +113,27 @@ function enviarPedidoWhatsApp() {
     let numeroTelefono = "573000000000"; 
     let mensaje = `🍔 *NUEVO PEDIDO - BURGER & CO* 🍔\n\n`;
     let total = 0;
-    
+
     carrito.forEach(item => {
         let subtotal = item.precio * item.cantidad;
         total += subtotal;
         mensaje += `▪️ *${item.cantidad}x* ${item.nombre} \n    Subtotal: $${subtotal.toLocaleString('es-CO', { minimumFractionDigits: 0 })}\n`;
     });
-    
+
     mensaje += `----------------------------------------\n`;
     mensaje += `💰 *TOTAL A PAGAR:* $${total.toLocaleString('es-CO', { minimumFractionDigits: 0 })}\n`;
 
     window.open(`https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
 
+// Exposición global para que no fallen los botones dinámicos del HTML
 window.cambiarCantidad = cambiarCantidad;
 window.vaciarCarrito = vaciarCarrito;
 window.enviarPedidoWhatsApp = enviarPedidoWhatsApp;
 
+// ==========================================
+// REVIEWS SLIDER
+// ==========================================
 let index = 0;
 function showReview() {
     const reviews = document.querySelectorAll(".review");
@@ -134,29 +144,71 @@ function showReview() {
 }
 
 // ==========================================
-// ASYNC FETCH JSON (Optimizado para carpetas estáticas)
+// ASYNC FETCH DESDE GOOGLE SHEETS (Base de datos)
 // ==========================================
-async function cargarMenu(){
+async function cargarMenu() {
     try {
-        const rutaJson = window.location.pathname.includes('/templates/') ? "../static/menu.json" : "static/menu.json";
+        // Tu ID de Google Sheets ya configurado para Burger & Co.
+        const SHEET_ID = '1E9ZEMDOYURlVjaGv2RLUha-6xwYJDhbr5e0tONU0Q_0';
         
-        const response = await fetch(rutaJson); 
-        if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        // URL para descargar el contenido en formato CSV estructurado
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
         
-        productos = await response.json();
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Error al conectar con Google Sheets: ${response.status}`);
+        
+        const dataText = await response.text();
+        
+        // Convertimos el texto CSV a un Array de objetos de JavaScript
+        productos = interpretarCSV(dataText);
+        
         renderizarProductos(productos);
-    } catch(error) {
-        console.error("Error cargando menu.json:", error);
+    } catch (error) {
+        console.error("Error cargando el menú desde la base de datos:", error);
     }
 }
 
+// Función auxiliar para procesar los datos que envía Google Sheets
+function interpretarCSV(texto) {
+    const lineas = texto.split('\n');
+    if (lineas.length === 0 || !lineas[0]) return [];
+
+    // Extraemos las cabeceras limpias de comillas
+    const cabeceras = lineas[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase());
+    const resultado = [];
+    
+    for (let i = 1; i < lineas.length; i++) {
+        if (!lineas[i].trim()) continue;
+        
+        // Expresión regular avanzada para separar por comas respetando textos con comillas y espacios
+        const celdas = lineas[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+        const filaObjeto = {};
+        
+        cabeceras.forEach((cabecera, índice) => {
+            let valor = celdas[índice] ? celdas[índice].replace(/"/g, '').trim() : '';
+            
+            // Convertimos automáticamente los ID y precios a números para las operaciones aritméticas
+            if (cabecera === 'precio' || cabecera === 'id') {
+                valor = parseFloat(valor) || 0;
+            }
+            filaObjeto[cabecera] = valor;
+        });
+        
+        resultado.push(filaObjeto);
+    }
+    return resultado;
+}
+
+// ==========================================
+// RENDER PRODUCTOS
+// ==========================================
 function renderizarProductos(lista){
     if(!menuGrid) return;
     menuGrid.innerHTML = "";
 
     lista.forEach(producto => {
         let rutaImagen = producto.imagen;
-        
+
         // Maneja los espacios codificándolos para la web automáticamente (%20)
         if (!rutaImagen.startsWith('http')) {
             rutaImagen = encodeURI(rutaImagen);
